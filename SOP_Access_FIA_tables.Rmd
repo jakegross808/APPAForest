@@ -1,22 +1,22 @@
 ---
-title: "Download FIA data tables and calculate metrics within the APPA HUC10 Shell"
-author:
-date: 
-version: "Built with R `r getRversion()`"
-output: 
+title: SOP 1 Download and calculate forest health metrics within the APPA
+  HUC10 Shell
+output:
+  word_document:
+    toc: yes
+    toc_depth: '2'
   pdf_document:
-    
-    toc: true
+    number_sections: yes
+    toc: yes
     toc_depth: 2
-    number_sections: true
   html_document:
-   
-   theme: united
-   highlight: textmate 
-   toc: true
-   toc_depth: 3
-   toc_float: true
-   number_sections: true
+    highlight: textmate
+    number_sections: yes
+    theme: united
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+version: Built with R `r getRversion()`
 ---
 
 ```{r setup, include = FALSE}
@@ -24,40 +24,49 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+#at<-rFIA::readFIA("C:/Users/hstan/Dropbox/FIA/VT")
+#at_FIAMR <- rFIA::clipFIA(at, mask = NULL, matchEval= FALSE, mostRecent = TRUE, nCores = cores)
+
 ```
 # Introduction {#intro}
 
-This document describes how to use the `rFIA` R package to download USFS FIA data and estimate forest attributes described in the APPA Forest Health Protocol ([Dieffenbach 2018](https://irma.nps.gov/DataStore/Reference/Profile/2257434)). The FIA program conducts annual (panel) inventories within each state. For the APPA region, this is most often a series of 5 annual, spatially unbiased inventories within each sampling cycle. This panel structure allows the FIA program to improve the precision of status and change estimates by leveraging previously collected data within an inventory cycle (e.g., estimate for 2015 may include data from annual inventories conducted from 2010-2015).
+The U.S. Forest Service (USFS) administers the Forest Inventory and Analysis Program to acquire inventory data on U.S. forests. The program was launched following the McSweeney - McNary Forest Research Act of 1928 (P.L. 70-466) which led to the first forests being inventoried in 1930 (USFS 2012). Data collected by the program are valuable for a variety of purposes, including timber harvest and ecological health. According to the FIA website, “…FIA reports on status and trends in forest area and location; in the species, size, and health of trees; in total tree growth, mortality, and removals by   harvest; in wood production and utilization rates by various products; and in forest land ownership…”FIA data are organized by state, but all state datasets conform to a consistent format1. However, in order to use data from the APPA region, data must be re-aggregated to the APPA area of interest. 
 
-This document illustrates how to use the functions in `rFIA` to access FIA data, subset the FIA data frame to the APPA HUC10 Shell, and produce the following estimates, typically at the plot- and ecoregion-scale. 
+This document describes how to use the `rFIA` R package ([Stanke et al. 2020](https://doi.org/10.1016/j.envsoft.2020.104664)) to download USFS FIA data and estimate forest attributes described in the APPA Forest Health Protocol ([Dieffenbach 2018](https://irma.nps.gov/DataStore/Reference/Profile/2257434)). The FIA program conducts annual (panel) inventories within each state. For the APPA region, this is most often a series of 5 annual, spatially unbiased inventories within each sampling cycle. This panel structure allows the FIA program to improve the precision of status and change estimates by leveraging previously collected data within an inventory cycle (e.g., estimate for 2015 may include data from annual inventories conducted from 2010-2015).
 
-1. **Live tree abundance**
-    + TPA, BAA, biomass, and carbon by species
-2. **Species diversity of live trees**
-    + Shannon's diversity, eveness, and richness
-3. **Tree vital rates**
-    + Annual diameter, basal area, and biomass growth by species
-4. **Forest demographic rates**
-    + Annual recruitment, mortality, and harvest totals and rates by species
-5. **Regeneration abundance**
-    + TPA of regenerating stems (<5" DBH) by species and size-class
-6. **Snag abundance**
-    + TPA, BAA, biomass, carbon, relative fraction
-7. **Down woody debris abundance**
-    + Volume, biomass, and carbon by fuel class
-8. **Invasive Plant abundance**
-    + % cover by species
-9. **Stand structural stage distributions**
-    + % area in pole, mature, and late stage forest
+This document illustrates how to use the functions in `rFIA` to:
+
+1. Access FIA data
+2. Subset the FIA data frame to the APPA HUC10 Shell
+3. Produce the following estimates, typically at the plot- and ecoregion-scale: 
+
+      * **Live tree abundance**
+          + TPA, BAA, biomass, and carbon by species
+      * **Species diversity of live trees**
+          + Shannon's diversity, evenness, and richness
+      * **Tree vital rates**
+          + Annual diameter, basal area, and biomass growth by species
+      * **Forest demographic rates**
+          + Annual recruitment, mortality, and harvest totals and rates by species
+      * **Regeneration abundance**
+          + TPA of regenerating stems (<5" DBH) by species and size-class
+      * **Snag abundance**
+          + TPA, BAA, biomass, carbon, relative fraction
+      * **Down woody debris abundance**
+          + Volume, biomass, and carbon by fuel class
+      * **Invasive Plant abundance**
+          + % cover by species
+      * **Stand structural stage distributions**
+          + % area in pole, mature, and late stage forest
 
 <br>
 
-This document does not describe the FIA database structure or demonstrate all of the functionality of the `rFIA` package functions. Readers shoud consult the documentation in `rFIA` for those details.
+This document does not describe the FIA database structure or demonstrate all of the functionality of the `rFIA` package functions. Readers should consult the documentation in `rFIA` for those details. Formatting of this document follows standards [RMarkdown](https://rmarkdown.rstudio.com/) notation. For instance, examples of executable R code chunks are denoted in gray areas in the following sections.
 
 <br>
 
 # Load packages
-``` {r load, include = TRUE, echo= TRUE, eval= TRUE, cache= TRUE,warning=FALSE, comment= NA}
+``` {r load, include = TRUE, echo= TRUE, eval= FALSE, cache= TRUE,warning=FALSE, comment= NA}
 library(rFIA)
 library (rgdal)
 library(parallel)
@@ -67,12 +76,12 @@ You can access the most recent `rFIA` package release with this command:
 `devtools::install_github("hunter-stanke/rFIA")`
 
 # Setup parallel processing
-``` {r para, include = TRUE, echo= TRUE, eval= TRUE, cache= TRUE,warning=FALSE, comment= NA}
+``` {r para, include = TRUE, echo= TRUE, eval= FALSE, cache= TRUE,warning=FALSE, comment= NA}
 ## How many cores do you have?
 parallel::detectCores(logical = FALSE) 
 
 ## How many do you want to use?
- cores <- 1 
+ cores <- 2
 ```
  
 # Import FIA data for each state intersecting APPA
@@ -81,16 +90,21 @@ parallel::detectCores(logical = FALSE)
 This example saves the tables to the directory `'./FIA'` from the 13 states along APPA
 
 ``` {r download, include = TRUE, echo= TRUE, eval= FALSE,warning=FALSE, comment= NA,}
-at <- getFIA(states = c('CT', 'GA', 'ME', 'MD', 'MA', 'NH', 'NJ', 'NY', 'NC', 'PA', 'TN', 'VT', 'VA'), nCores = cores,dir = './FIA/', common = TRUE 
+at <- getFIA(states = c('CT', 'GA', 'ME', 'MD', 'MA', 'NH', 
+    'NJ', 'NY', 'NC', 'PA', 'TN', 'VT', 'VA'), nCores = cores,dir = './FIA/', common = TRUE) 
 ```
 
-This is a large amount of data so this step will be slow. 
+This is a large amount of data so this step will be slow. You can also choose to load in the downloaded data directly into the R environment with the agrument `r load = TRUE`, however, since this is a large database if all data is too large to fit in memory, use `r load = FALSE` and load the data as a "Remote.FIA.Database" with `r `readFIA` as described in the next step.
+
+# Load FIA database into R environment from local directory
+
+
 
 <br>
 
 # Load HUC10 shell polygons
 
-Load in a file containing polygons of ecological sections and subsections within Subregions within the conterminous United States clipped to the HUC10 shell surrounding the Appalachian National Scenic Trail. This data set contains regional geographic delineations for analysis of ecological relationships across ecological units.
+Load in a file containing polygons of ecological sections and subsections within Subregions within the conterminous United States clipped to the HUC10 shell surrounding the Appalachian National Scenic Trail. This data set contains regional geographic delineations for analysis of ecological relationships across ecological units. Currently, all spatial data for this protocol are located on NETN's server.
 
 Load in the data using `rgdal::readOGR`
 
@@ -98,18 +112,18 @@ Load in the data using `rgdal::readOGR`
 eco <- readOGR('./ecoregions', 'at_ecoSub')
 ```
 
-Looking in the subdirectory of your project folder '/ecoregions' for the layer named 'at_ecoSub'
+In this case looks in the subdirectory '/ecoregions' of project folder for the layer named 'at_ecoSub'
 
 <br>
 
 # Spatially subset FIA data to HUC10 Shell
-`clipFIA` performs space-time queries on Forest Inventory and Analysis Database (FIADB). You subset database to include only data associated with particular inventory years (i.e., most recent), and/or only data within a user-defined region.
+`clipFIA` performs space-time queries on Forest Inventory and Analysis Database (FIADB). `clipFIA` subsets the database to include only data associated with particular inventory years (i.e., most recent), and/or only data within a user-defined region.
 
 The below examples spatially subsets the `at` FIA data object to the HUC10 Shell polygon `eco` using the `mask` argument. Additional arguments as shown below can access different inventory years.
 
 <br>
 
-## Access all inventories
+## Access all inventories in FIADB
 
 ```{r intersect, include = TRUE, echo=TRUE, warning=FALSE, comment= NA, , eval= FALSE}
 at_FIA <- clipFIA(at, mask = eco, matchEval= FALSE, mostRecent = FALSE, nCores = cores)
@@ -117,7 +131,7 @@ at_FIA <- clipFIA(at, mask = eco, matchEval= FALSE, mostRecent = FALSE, nCores =
 
 <br>
 
-## Access the most recent inventory
+## Access the most recent inventory in FIADB
 
 Set `mostRecent = TRUE`
 
@@ -127,42 +141,72 @@ at_FIAMR <- clipFIA(at, mask = NULL, matchEval= FALSE, mostRecent = TRUE, nCores
 
 <br>
 
-## Access inventories from matching reporting years
+## Access inventories from matching reporting years in FIADB
 
 Set `matchEval = TRUE`
 
 ```{r intersect2, include = TRUE, echo=TRUE, warning=FALSE, comment= NA,  eval= FALSE}
-at_FIAMatch <- clipFIA(at, mask = NULL, matchEval= TRUE, mostRecent = FALSE, nCores = cores)
+at_FIAMatch <- clipFIA(at, mask = eco, matchEval= TRUE, mostRecent = FALSE, nCores = cores)
 ```
 
 <br>
 
-The following examples will use the `at_FIA` object including all inventories within the HUC10 Shell.
+The following examples will use the `at_FIA` object, which includes all inventories within the HUC10 Shell.
 
 <br>
 
-# Data Archiving and Population Estimation
+# Data Archiving and Population Estimation of forest health metrics
+
+Accessing FIA data is needed for archiving raw and summary data and to calculate a vareity of forest health metrics. 
 
 The following section illustrates how to:
 
-+ Create raw data tables (typically sub plot-level) within the APPA HUC10 Shell for archiving with project deliverables. 
+1. Create raw data tables (typically sub plot-level) within the APPA HUC10 Shell for archiving with protocol products. 
 
-+ Derive Population Estimates within the APPA HUC10 Shell at the plot- and ecoregion-scale:
+2. Derive population estimates within the APPA HUC10 Shell at the subplot-, plot- and ecoregion-scale for each forest health metric:
+
+      * **Live tree abundance**
+          + TPA, BAA, biomass, and carbon by species
+      * **Species diversity of live trees**
+          + Shannon's diversity, evenness, and richness
+      * **Tree vital rates**
+          + Annual diameter, basal area, and biomass growth by species
+      * **Forest demographic rates**
+          + Annual recruitment, mortality, and harvest totals and rates by species
+      * **Regeneration abundance**
+          + TPA of regenerating stems (<5" DBH) by species and size-class
+      * **Snag abundance**
+          + TPA, BAA, biomass, carbon, relative fraction
+      * **Down woody debris abundance**
+          + Volume, biomass, and carbon by fuel class
+      * **Invasive Plant abundance**
+          + % cover by species
+      * **Stand structural stage distributions**
+          + % area in pole, mature, and late stage forest
   
-Functions in `rFIA` can be used to derive population estimates of forest data using 3 unique estimators (methods for panel combination). In the below examples only the annual method is used (no panel combination). 
+Each of the following subsections illustrates how to use the variety of functions in `rFIA` to calculate these metrics and provides a decription of their tabular outputs.
 
-* __Temporally Indifferent__ : The temporally indifferent method assumes that all annual panels within an inventory cycle were collected simultaneously in the reporting year. This is the flagship method used by the FIA program, seen tools like `EVALIDator`, though it introduces temporal lag bias and smoothing that limits its utility for change detection.
 
-* __Annual__ : The annual method returns estimates produced directly from annual panels (no panel combination). Thus only data that is measured in a given year is used to produce estimates for that year. This method will produce estimates with higher variance (loss of precision) as we forgo the opportunity to leverage previous information (increase sample size), although it may be the best option for assessing inter-annual variation and temporal trends. NOTE: This estimator may produce estimates with temporally cyclical structure becuase of repeat observations of individual annual panels between inventory cycles. For example if plots are measured on 5 year cycles beginning in 2005, the same plots measured in 2005 will be remeasured in 2010, 2015, 2020 and onward. Hence, corresponding annual panel estimates are likely to be similar to one another, potentially producing results with some odd temporal structure. 
+**Population estimation procedures:**
 
-* __Exponential Moving Average__ : The exponential moving average method falls in the middle ground between the temorally indifferent and annual estimators, leveraging all annual panels within an inventory cycle to produce estimates, although weighting recent panels higher than less recent panels. The relative weights applied to each panel declines exponentially as a function of time since measurement, but we can control the rate of this decay with a parameter called `lambda` (ranges form 0-1).  Low lambda values will place higher weight on more recent observations, so as lambda approaches 0, the exponential moving average will approach the annual method for panel combination. For this analysis we used the defualt value of 0.50. 
+Functions in `rFIA` can be used to derive population estimates of forest data using 5 unique estimators (methods for panel combination) using the `method` argument in each function. In the below examples only the annual method is used (no panel combination). 
+
+* __Temporally Indifferent__ (`method = TI`): The temporally indifferent method assumes that all annual panels within an inventory cycle were collected simultaneously in the reporting year. This is the flagship method used by the FIA program, seen tools like `EVALIDator`, though it introduces temporal lag bias and smoothing that limits its utility for change detection.
+
+* __Annual__ (`method= ANNUAL`): The annual method returns estimates produced directly from annual panels (no panel combination). Thus only data that is measured in a given year is used to produce estimates for that year. This method will produce estimates with higher variance (loss of precision) as it forgoes the opportunity to leverage previous information (increase sample size), although it may be the best option for assessing inter-annual variation and temporal trends. NOTE: This estimator may produce estimates with temporally cyclical structure becuase of repeat observations of individual annual panels between inventory cycles. For example if plots are measured on 5 year cycles beginning in 2005, the same plots will be remeasured in 2010, 2015, 2020 and onward. Hence, corresponding annual panel estimates are likely to be similar to one another, potentially producing results with some odd temporal structure. 
+
+* __Simple Moving Average__ (`method = SMA`): The simple moving average estimator (SMA) is similar to the TI, but rather than treating all plots in an inventory cycle as one large periodic inventory, the SMA instead produces estimates from annual panels and subsequently combines those panels with equal weight. Hence, the SMA is in a sense “temporally-indifferent” by weighting recent information equal to old information (think annual panels here), and represents the average state of the population over the temporal frame of sampling (length of an inventory cylce). A key difference between the SMA and TI: the SMA effectively takes into account the sample size of annual panels, of particular importance for the associated variance estimator.
+
+* __Linear Moving Average__ (`method= LMA`): The linear moving average estimator (LMA) falls in the middle ground between the SMA and annual estimators, leveraging all annual panels within an inventory cycle to produce estimates, although giving higher weight to more recent panels. The relative weights applied to each panel declines linearly as a function of time since measurement. This reduces the effective sample size of the inventory, and hence the LMA tends to be less precise than the SMA (i.e., higher variance). However, a temporally decaying weighting scheme means the LMA tends to have higher temporal specificity than the SMA (less temporal smoothing).
+
+* __Exponential Moving Average__ (`method = EMA`): The exponential moving average estimator (EMA) is the most flexible design-based estimator implemented in rFIA. The EMA is similar to the LMA in that it gives higher weight to more recent panels, however these weights decline exponentially as a function of time since measurement. We can control the rate of this decay with a parameter called `lambda` (0.5 by default, ranges form 0-1). Low lambda values will place higher weight on more recent observations, so as lambda approaches 0, the EMA will approach the annual estimator. In contrast, high lambda values spread weights more evenly across the inventory cycle, so as lambda approaches 1, the EMA will approach the SMA. We face the same trade-off here as we do in the LMA: precision vs. temporal specificity. That is, as lambda increases, we gain precision (reduce variance) and lose temporal specificy (increase temporal smoothing). 
 
 The following example code produces estimates for all FIA reporting years within the APPA HUC10 Shell which were available in each state. Some states have different reporting schedules, and thus there is some missingness in the data. FIA data may not be available for each ecoregion subsection defined by the `at_ecoSub.shp` shapefile. Attributes of ecoregions where FIA data was unavailable are  preserved in objects although estimated attributes are listed as `NA` for these rows. 
 
 <br>
 
 ## Stand Structure
-`standStruct` returns the stand structural stage distribution of an area of forest/timberland from FIA data.
+`standStruct` estimates  forest structural stage distributions as percent forested land area in pole, mature, late, and mosaic stages and returns the stand structural stage distribution of an area of forest/timberland from FIA data.
 
 ### **Plot-level**
 
@@ -178,12 +222,13 @@ ssPlot <- standStruct(at_FIA, byPlot= TRUE, grpBy = c(STATECD, ECOSUBCD, OWNGRPC
 To return stand structural estimates by Ecoregions intersecting APPA HUC10 Shell:
 
 ``` {r eco_ss,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
-ss <- standStruct(at_FIA, polys = eco, tidy = FALSE, nCores = cores, method = 'annual')
+ss <- standStruct(at_FIA, polys = eco, nCores = cores, method = 'annual')
 ```
 
 ### **Data Definitions**
 
-* **Stand Structure**: Estimates of forest structural stage distributions as percent forested land area in pole, mature, late, and mosaic stages
+* **Description:** Estimates of forest structural stage distributions as percent forested land area in pole, mature, late, and mosaic stages
+* **Data fields:** 
     + *YEAR*: FIA reporting year for current abundance estimates
     + *POLE_PERC*: estimate of proportion forested area in pole stage forest
     + *MATURE_PERC*: estimate of proportion forested area in mature stage forest
@@ -191,12 +236,12 @@ ss <- standStruct(at_FIA, polys = eco, tidy = FALSE, nCores = cores, method = 'a
     + *MOSAIC_PERC*: estimate of proportion forested area in mosaic stage (unclassified) forest
     + *nPlots*: number of non-zero plots used to compute current area estimates
     + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
-    + other columns from `ecoregions/at_ecoSub.shp`
+    + other columns from `at_ecoSub.shp`
 
 <br>
 
 ## Diversity
-`diversity` produces estimates of diversity from FIA data. Returns Shannon's Index (H), Shannon's equitability (Eh), and richness (S) for alpha (mean/SE of stands), beta, and gamma diversity. Default behavior estimates species diversity, using TPA as a state variable and Species Code (SPCD) to groups of individuals. 
+`diversity` produces estimates of diversity from FIA data. Returns Shannon's Index (H), Shannon's Equitability (Eh), and Richness (S) for alpha (mean/SE of stands), beta, and gamma diversity. Default behavior estimates species diversity, using TPA as a state variable and Species Code (SPCD) to groups of individuals. 
 
 ### **Plot-level**
 
@@ -219,7 +264,9 @@ div <- diversity(at_FIA, polys = eco, nCores = cores, treeDomain = DIA >= 10, me
 
 ### **Data Definitions**
 
-* **Diversity** Estimates of species diversity indicies for live trees (DBH >= 12.7 cm) at alpha, beta, and gamma levels
+* **Description:** Estimates of species diversity indicies for live trees (DBH >= 12.7 cm) at alpha, beta, and gamma levels.
+
+* **Data fields:** 
     + *YEAR*: FIA reporting year for current abundance estimates
     + *H_a*: estimate of Shannon's Diversity Index for live trees at the alpha (stand) level
     + *H_b*: estimate of Shannon's Diversity Index for live trees at the beta (landscape) level
@@ -266,13 +313,15 @@ To calcuate by size class include argument `bySizeClass =TRUE`
 To return estimates of live trees per acre (DBH >10 in.) and basal area by Ecoregions intersecting APPA HUC10 Shell:
 
 ``` {r eco_tpa,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
-tpaS <- tpa(at_FIA, polys = eco, bySpecies = TRUE, treeType = 'live', treeDomain = DIA >= 10, nCores = cores, method = 'annual')
+tpaEco <- tpa(at_FIA, polys = eco, bySpecies = TRUE, treeType = 'live', treeDomain = DIA >= 10, nCores = cores, method = 'annual')
 ```
 
 
 ### **Data definitions**
 
-* **Trees Per Acre (TPA) and Basal Area**: Estimates of live tree abundance (TPA & BAA) per forested acre 
+* **Description:** Estimates of live tree abundance (TPA & BAA) per forested acre 
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *TPA*: estimate of trees per acre
     + *BAA*: estimate of tree basal area (sq.ft.) per acre
@@ -308,7 +357,9 @@ regen <- tpa(at_FIA, polys = eco, treeType = 'live', treeDomain = DIA < 5, nCore
 
 ### **Data Definitions**
 
-* **Regeneration**: Estimates of live sapling (2.5 cm <= DBH < 12.7 cm) abundance (TPA & BAA) per forested acre 
+* **Description:** Estimates of live sapling (2.5 cm <= DBH < 12.7 cm) abundance (TPA & BAA) per forested acre 
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *TPA*: estimate of saplings per acre
     + *BAA*: estimate of sapling basal area (sq.ft.) per acre
@@ -321,32 +372,48 @@ regen <- tpa(at_FIA, polys = eco, treeType = 'live', treeDomain = DIA < 5, nCore
 
 ## Mortality and Recruitment
 
-`growMOrt` produces estimates of annual recruitment, natural mortality, and harvest rates.
+`growMort` produces estimates of annual recruitment, natural mortality, and harvest rates.
 
-Recruitment events are defined as when a live stem which is less than 10 inches DBH at time 1, grows to or beyond 10 inches DBH by time 2. This does NOT include stems which grow beyond the 10-inch diameter criteria and are then subject to mortality prior to remeasurement. Natural mortality is defined as when a live stem is subject to non-harvest mortality between successive measurement periods. Finally, harvest is defined as when a live stem is cut and removed between successive measurements.
+Recruitment events are defined as when a live stem which is less than 5 inches DBH at time 1, grows to or beyond 5 inches DBH by time 2. This does NOT include stems which grow beyond the 5-inch diameter criteria and are then subject to mortality prior to remeasurement. Natural mortality is defined as when a live stem is subject to non-harvest mortality between successive measurement periods. Finally, harvest is defined as when a live stem is cut and removed between successive measurements.
 
 ### **Plot-level**
 
-To estimate plot-level growth and mortality per species (trees DBH > 10 in.)
+To estimate plot-level mortality per species (trees DBH > 10 in.):
 
 ``` {r pl_gMort,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
 gmSPlot <- growMort(at_FIA, byPlot= TRUE, grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT),  method = "annual", treeDomain = DIA >= 10)
+
+## Recruitment estimates will be null here, as we are excluding stems < 10 inches
 ```
 
-To calcuate by size class include argument `bySizeClass = TRUE`
+To include recruitment estimates, remove size restriction in `treeDomain`:
+
+```{r pl_gMort2,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
+gmSPlot_recr <- growMort(at_FIA, byPlot= TRUE, grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT),  method = "annual")
+
+#This will also return mortality estimates as well. 
+```
+
+To calculate by size class include argument `bySizeClass = TRUE`
 
 
 ### **Ecoregion-level**
 
-To estimate growth and mortality per species (trees DBH > 10 in.) by Ecoregions intersecting APPA HUC10 Shell
+To estimate recruitment and mortality (trees DBH > 10 in.) per species by Ecoregions intersecting APPA HUC10 Shell:
 
 ``` {r eco_gMort,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
+## Same as above, no recruitment estimates because we are excluding stems < 10 inches
 gm <- growMort(at_FIA, polys = eco, nCores = cores, treeDomain = DIA >= 10, method = 'annual')
+
+## To include recruitment
+gm_recr <- growMort(at_FIA, polys = eco, nCores = cores, method = 'annual')
 ``` 
 
 ### **Data Definitions**
 
-* **Mortality and Recruitment**: Estimates of annual tree (DBH >= 10 in. DBH) recruitment, mortality, and harvest rates per forested acre and relative to population totals (e.g. % mortality / year)
+* **Description:** Estimates of annual tree recruitment, mortality, and harvest rates per forested acre and relative to population totals (e.g. % mortality / year)
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for growth, removal, and mortality estimates
     + *RECR_TPA*: estimate of annual recruitment (growth beyond 10 in. DBH) as trees per forested acre
     + *MORT_TPA*: estimate of annual mortality (excluding harvest and conversion) as trees per forested acre
@@ -391,7 +458,9 @@ vr  <- vitalRates(at_FIA, polys = eco, nCores = cores, treeDomain = DIA >= 10, m
 
 ### **Data Definitions**
 
-* **Growth rates**: Estimates of (1) individual live tree diameter, basal area, net volume, and biomass growth rates, and (2) basal area, net volume, and biomass growth rates expressed on a per forested acre basis
+* **Description:** Estimates of (1) individual live tree diameter, basal area, net volume, and biomass growth rates, and (2) basal area, net volume, and biomass growth rates expressed on a per forested acre basis
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for growth, removal, and mortality estimates
     + *DIA_GROW*: estimate of annual diameter growth (inches) rate for live trees (individual growth)
     + *BA_GROW*: estimate of annual basal area growth (sq.ft.) rate for live trees (individual growth)
@@ -436,8 +505,9 @@ bio <- biomass(at_FIA, polys = eco, nCores = cores, treeDomain = DIA >= 10, meth
 
 ### **Data Definitions**
 
-* **Biomass**
-  + Estimates of live tree biomass, volume, and carbon on a per forested acre basis 
+* **Description:** Estimates of live tree biomass, volume, and carbon on a per forested acre basis 
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *NETVOL_ACRE*: estimate of live tree net volume (cu.ft.) per acre
     + *SAWVOL_ACRE*: estimate of live tree merchantable saw volume (cu.ft.) per acre
@@ -487,7 +557,10 @@ snagV <- biomass(at_FIA, treeType = 'dead', polys = eco, treeDomain = DIA >= 10,
 
 ### **Data Definitions**
 
-* **Snag density and basal area**: Estimates of standing dead tree abundance (TPA & BAA) per forested acre and relative to population totals (e.g. percent snags by TPA)
+* **Description:** Estimates of standing dead tree abundance (TPA & BAA) per forested acre and relative to population totals (e.g. percent snags by TPA)
+
+* **Data fields:**
+  + **Trees per acre (TPA) and Basal Area(BAA):**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *TPA*: estimate of snags per acre
     + *BAA*: estimate of snags basal area (sq.ft.) per acre
@@ -498,7 +571,7 @@ snagV <- biomass(at_FIA, treeType = 'dead', polys = eco, treeDomain = DIA >= 10,
     + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
     + other columns from `at_ecoSub.shp`
     
-* **Snag Volume**: Estimates of standing dead tree (DBH >= 10 in.) biomass, volume, and carbon on a per forested acre basis 
+  + **Biomass**: Estimates of standing dead tree (DBH >= 10 in.) biomass, volume, and carbon on a per forested acre basis 
     + *YEAR*: FIA reporting year for current abundance estimates
     + *NETVOL_ACRE*: estimate of snag net volume (cu.ft.) per acre
     + *SAWVOL_ACRE*: estimate of snag merchantable saw volume (cu.ft.) per acre
@@ -510,15 +583,6 @@ snagV <- biomass(at_FIA, treeType = 'dead', polys = eco, treeDomain = DIA >= 10,
     + *CARB_ACRE*: estimate of snag total (AG + BG) carbon (tons) per acre
     + *nPlots_VOL*: number of non-zero plots used to compute volume, biomass, and carbon estimates
     + *nPlots_AREA*: number of non-zero plots used to compute land area estimates
-    + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
-    + other columns from `at_ecoSub.shp`
-* **Stand Structure**: Estimates of forest structural stage distributions as percent forested land area in pole, mature, late, and mosaic stages
-    + *YEAR*: FIA reporting year for current abundance estimates
-    + *POLE_PERC*: estimate of proportion forested area in pole stage forest
-    + *MATURE_PERC*: estimate of proportion forested area in mature stage forest
-    + *LATE_PERC*: estimate of proportion forested area in late-seral stage forest
-    + *MOSAIC_PERC*: estimate of proportion forested area in mosaic stage (unclassified) forest
-    + *nPlots*: number of non-zero plots used to compute current area estimates
     + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
     + other columns from `at_ecoSub.shp`
     
@@ -545,7 +609,9 @@ dw <- dwm(at_FIA, polys = eco, tidy = FALSE, nCores = cores, method = 'annual')
 ``` 
 
 ### **Data Definitions**
-* **Down woody material**: Estimates of down woody material volume, biomass, and carbon by fuel type on a per forested acre basis
+* **Description:** Estimates of down woody material volume, biomass, and carbon by fuel type on a per forested acre basis
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *VOL_DUFF_ACRE*: Not available for this region
     + *VOL_LITTER_ACRE*: Not available for this region
@@ -599,7 +665,9 @@ inv <- invasive(at_FIA, polys = eco, nCores = cores, method = 'annual')
 ```
 ### **Data Definitions**
 
-* **Invasive Species Cover**: Estimates of areal coverage by invasive plant species relative to forested land area
+* **Description:** Estimates of areal coverage by invasive plant species relative to forested land area
+
+* **Data fields:**
     + *YEAR*: FIA reporting year for current abundance estimates
     + *SYMBOL*: unique species ID from NRCS Plant Reference Guide
     + *SCIENTIFIC_NAME*: latin name of the species
@@ -610,16 +678,110 @@ inv <- invasive(at_FIA, polys = eco, nCores = cores, method = 'annual')
     + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
     + other columns from `at_ecoSub.shp`
     
+### Forest Stability Index
+
+``` {r fsi,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE }
+fsi.NE<-fsi(at_FIA, polys=eco, returnSpatial = FALSE, bySpecies=TRUE)
+
+fsi.NE<-filter(fsi.NE, YEAR == "2020" & SCIENTIFIC_NAME == "Fraxinus americanus")
+
+fsi.plot<-plotFIA(fsi.NE, y= FSI, x= SUBSECTI_1, plot.title = 'Forest Stability Index', x.lab = "Year", y.lab= "Forest Stability Index", se= FALSE, n.max= 5)
+
+#recode x-variable to not show date
+fsi.plot$data$xVar<-as.numeric(fsi.plot$data$YEAR)
+fsi.plot
+
+
+
+
+fsi.NE.shp<-fsi(at_FIA, polys=eco, returnSpatial = TRUE, bySpecies=TRUE)
+
+plotFIA(fsi.NE.shp, y= FSI)
+
+```
+
+
+# Basic visualizations
+
+<br>
+
+## Times series plot
+
+### TPA and Basal area over time
+```{r ts_plot,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE, fig.height= 8, fig.width= 6}
+tpaEcots <- tpa(at_FIA, polys = eco, treeType = 'live', treeDomain = DIA >= 10, returnSpatial = FALSE, method='SMA')
+
+ts.plot<-plotFIA(tpaEcots, y = BAA, grp = SUBSECTI_1, plot.title = 'Live Basal Area (sq.ft/acre) per ecoregion', x.lab = "Year", y.lab= "Live Basal Area (sq.ft/acre) + SE", se= FALSE, n.max= 5)
+
+#recode x-variable to not show date
+ts.plot$data$xVar<-as.numeric(ts.plot$data$YEAR)
+ts.plot
+
+plotFIA(tpaEcots, y = TPA, grp = SUBSECTI_1, plot.title = 'TPA per ecoregion')
+```
+
+## Size class distribution
+
+### Basal area by size class
+```{r SCplot, include = TRUE, echo=TRUE, warning=FALSE, comment= NA, cache=TRUE,fig.height= 8, fig.width= 6, eval= FALSE}
+tpaEcoSc <- tpa(at_FIAMR, treeType = 'live',  method='annual', bySizeClass = TRUE)
+
+plotFIA(tpaEcoSc, y = BAA, x= sizeClass, plot.title = 'Basal area (sq.ft/acre)')
+```
+
+Plotting object `at_FIAMR` which only includes most recent inventory.
+
+<br>
+
+## Plot locations
+
+### Biomass
+
+```{r bio_plot,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
+bioPl <- biomass(at_FIAMR, byPlot = TRUE, returnSpatial = TRUE, polys = eco)
+
+plot(bioPl)
+
+plot(bioPl['BIO_ACRE'])# biomass per acre
+```
+
+## Chloropleth map
+
+### Live TPA and basal area per ecoregion
+```{r tpa_plot,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
+tpaEco <- tpa(at_FIA, polys = eco, treeType = 'live', treeDomain = DIA >= 10, returnSpatial = TRUE, method='annual')
+
+plotFIA(tpaEco, y = TPA, legend.title = 'Trees per acre')
+
+plotFIA(tpaEco, y = BAA, legend.title = 'Basal area (sq.ft/acre)')
+```
+
+Note the need to pass a spatial object to `polys` argument in `tpa`.
+
+<br>
+
+
 # References
 
 Bechtold, W.A.; Patterson, P.L., eds. 2005. The Enhanced Forest Inventory and Analysis Program - National Sampling Design and Estimation Procedures. Gen. Tech. Rep. SRS - 80. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 85 p. https://www.srs.fs.usda.gov/pubs/gtr/gtr_srs080/gtr_srs080.pdf
 
 Dieffenbach, F. (2018). Appalachian National Scenic Trail forest health monitoring protocol, Natural Resource Report NPS/NETN/NRR—2018/1804. National Park Service, Fort Collins, Colorado. https://irma.nps.gov/DataStore/DownloadFile/610353
 
-Woodall, C.; Monleon, V.J., eds. 2007. Sampling Protocol, Estimation, and Analysis Procedures for the Down Woody Materials Indicator of the FIA Program. Gen. Tech. Rep. NRS - 22. ewtown Square, PA: U.S. Department of Agriculture, Forest Service, Northern Research Station. https://www.nrs.fs.fed.us/pubs/gtr/gtr_nrs22.pdf
+Stanke, H., Finley, A. O., Weed, A. S., Walters, B. F., & Domke, G. M. (2020). rFIA: An R package for estimation of forest attributes with the US Forest Inventory and Analysis database. Environmental Modelling & Software, 127, 104664. https://doi.org/10.1016/j.envsoft.2020.104664
+
+Woodall, C.; Monleon, V.J., eds. 2007. Sampling Protocol, Estimation, and Analysis Procedures for the Down Woody Materials Indicator of the FIA Program. Gen. Tech. Rep. NRS - 22. Newtown Square, PA: U.S. Department of Agriculture, Forest Service, Northern Research Station. https://www.nrs.fs.fed.us/pubs/gtr/gtr_nrs22.pdf
 
 FIA Database User Guide: https://www.fia.fs.fed.us/library/database-documentation/
 
-# Document versioning 
+# Revision History 
 
-This document was created using R version `r getRversion()` on `r Sys.Date()` by Aaron Weed.
+Version numbers will be incremented by a whole number (e.g., Version 1.3 to 2.0) when a change is made that significantly affects requirements or procedures. Version numbers will be incremented by decimals (e.g., Version 1.06 to Version 1.07) when there are minor modifications that do not affect requirements or procedures included in the protocol. Add rows as needed for each change or set of changes tied to an updated version number.
+
+**Revision History Log**
+
+| Version #  |  Date |  Revised by  | Changes  |Justification |
+|---|---|---|---|---|
+| 1.00  |  July 2017 |  Fred Dieffenbach |  Initial Version |   |
+| 2.00  | May 2020  | Aaron Weed  | Updated and merged prior versions of SOPs 1 and 2 into this SOP to incorporate new R-based FIA data workflow utilizing ther `rFIA` package.  | These changes were made because former workflow using MS Access downloads from FIA are no longer supported and because analysis workflow for estimating metrics was updated.  |
+|   |   |   |   |   |
+
