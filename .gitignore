@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.docx
+*.html
+*.Rproj
+SOP_Access_FIA_tables_cache

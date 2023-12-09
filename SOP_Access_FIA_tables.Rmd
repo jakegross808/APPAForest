@@ -2,13 +2,6 @@
 title: SOP 1 Download and calculate forest health metrics within the APPA
   HUC10 Shell
 output:
-  word_document:
-    toc: yes
-    toc_depth: '2'
-  pdf_document:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
   html_document:
     highlight: textmate
     number_sections: yes
@@ -16,6 +9,13 @@ output:
     toc: yes
     toc_depth: 3
     toc_float: yes
+  pdf_document:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+  word_document:
+    toc: yes
+    toc_depth: '2'
 version: Built with R `r getRversion()`
 ---
 
@@ -67,9 +67,13 @@ This document does not describe the FIA database structure or demonstrate all of
 
 # Load packages
 ``` {r load, include = TRUE, echo= TRUE, eval= FALSE, cache= TRUE,warning=FALSE, comment= NA}
-library(rFIA)
-library (rgdal)
+#library(rFIA) # package needs a few updates to fix recent issues
+# using Hunter's dev version with personal edits (including accepting a pull request) 
+devtools::load_all('C:/Users/JJGross/Documents/R_projects/rFIA-master/rFIA-master/R')
+#library (rgdal) # rgdal retired
+library(sf) # use sf instead of rgdal
 library(parallel)
+
 ```
 
 You can access the most recent `rFIA` package release with this command: 
@@ -77,11 +81,14 @@ You can access the most recent `rFIA` package release with this command:
 
 # Setup parallel processing
 ``` {r para, include = TRUE, echo= TRUE, eval= FALSE, cache= TRUE,warning=FALSE, comment= NA}
-## How many cores do you have?
+## How many physical cores do you have?
 parallel::detectCores(logical = FALSE) 
 
 ## How many do you want to use?
- cores <- 2
+
+## If you still want to use your computer for anything else during the computations (e.g., checking your E-mails or writing a Word document), you should reserve at least one core for those remaining tasks.
+
+cores <- parallel::detectCores(logical = FALSE)-1 # set to use all physical cores minus one.
 ```
  
 # Import FIA data for each state intersecting APPA
@@ -90,26 +97,60 @@ parallel::detectCores(logical = FALSE)
 This example saves the tables to the directory `'./FIA'` from the 13 states along APPA
 
 ``` {r download, include = TRUE, echo= TRUE, eval= FALSE,warning=FALSE, comment= NA,}
-at <- getFIA(states = c('CT', 'GA', 'ME', 'MD', 'MA', 'NH', 
-    'NJ', 'NY', 'NC', 'PA', 'TN', 'VT', 'VA'), nCores = cores,dir = './FIA/', common = TRUE) 
+
+## APPA States
+at_states <- c('CT', 'GA', 'ME', 'MD', 'MA', 'NH', 'NJ', 'NY', 'NC', 'PA', 
+               'TN', 'VT', 'VA')
+
+## Small subset of FIA dataset to test 'getFIA()' before big download
+test <- c('AS', 'GU') # smallest datasets in 2023
+
+#FIA_data_here <- './FIA/'
+FIA_data_here <- 'C:/Users/JJGross/Documents/R_projects/FIA_data/allStates'
+
+## change between 'states = test' (to test) and ' states = at_states' (for APPA download) 
+## 'load = FALSE' downloads the data but does not load data into R session 
+## (loading into R session shown in next step with 'readFIA()')
+
+#getFIA(states = test, dir = FIA_data_here, 
+#       nCores = cores, common = TRUE, load = FALSE) 
 ```
 
-This is a large amount of data so this step will be slow. You can also choose to load in the downloaded data directly into the R environment with the agrument `r load = TRUE`, however, since this is a large database if all data is too large to fit in memory, use `r load = FALSE` and load the data as a "Remote.FIA.Database" with `r `readFIA` as described in the next step.
+This is a large amount of data so this step will be slow. Test dataset useful to check process first. You can choose to load in the downloaded data directly into the R environment with the argument `r load = TRUE`, however, since this is a large database if all data is too large to fit in memory, use `r load = FALSE` and load the data as a "Remote.FIA.Database" with `r `readFIA` as demonstrated in the next step.
 
 # Load FIA database into R environment from local directory
 
-
-
-<br>
+``` {r read, include = TRUE, echo= TRUE, eval= FALSE, warning=FALSE, comment= NA}
+at <- readFIA(dir = FIA_data_here, states = at_states, nCores = cores)
+```
 
 # Load HUC10 shell polygons
 
 Load in a file containing polygons of ecological sections and subsections within Subregions within the conterminous United States clipped to the HUC10 shell surrounding the Appalachian National Scenic Trail. This data set contains regional geographic delineations for analysis of ecological relationships across ecological units. Currently, all spatial data for this protocol are located on NETN's server.
 
-Load in the data using `rgdal::readOGR`
+Load in the data using `sf::read_sf`
 
 ``` {r eco, include = TRUE, echo= TRUE, eval= FALSE,warning=FALSE, comment= NA}
-eco <- readOGR('./ecoregions', 'at_ecoSub')
+#eco <- readOGR('./ecoregions', 'at_ecoSub') #rgdal 
+eco <- sf::read_sf(dsn = './ecoregions', layer = 'at_ecoSub')
+plot(eco["SUBSECTION"])
+plot(eco["SECTION_NA"])
+
+# Distinct SUBSECTIONS:
+n_distinct(eco$SUBSECTION)
+
+# Distinct SUBSECTI_1:
+n_distinct(eco$SUBSECTI_1)
+levels(as.factor(eco$SUBSECTI_1))
+
+# Distinct SECTION_NA:
+n_distinct(eco$SECTION_NA)
+levels(as.factor(eco$SECTION_NA))
+
+# Distinct PROVINCE_N:
+n_distinct(eco$PROVINCE_N)
+levels(as.factor(eco$PROVINCE_N))
+
 ```
 
 In this case looks in the subdirectory '/ecoregions' of project folder for the layer named 'at_ecoSub'
@@ -119,7 +160,13 @@ In this case looks in the subdirectory '/ecoregions' of project folder for the l
 # Spatially subset FIA data to HUC10 Shell
 `clipFIA` performs space-time queries on Forest Inventory and Analysis Database (FIADB). `clipFIA` subsets the database to include only data associated with particular inventory years (i.e., most recent), and/or only data within a user-defined region.
 
-The below examples spatially subsets the `at` FIA data object to the HUC10 Shell polygon `eco` using the `mask` argument. Additional arguments as shown below can access different inventory years.
+Spatially, the `mask` argument below selects only the `at` FIA plots which fall within the perimeter of the `eco` spatial extent (i.e. the outer boundary of the HUC10 Shell polygons). 
+
+Temporally, the `mostRecent` argument returns only data for most recent inventory if set to `TRUE`
+
+Finally, by setting `matchEval = TRUE` the `clipFIA` function will return only population evaluations (found in the `POP_EVAL` table) that have a matching end inventory year `END_INVYR`. The `END_INVYR` matches must occur throughout all states in the supplied dataset, any evaluation IDs with unmatched `END_INVYR` are dropped. 
+
+
 
 <br>
 
@@ -216,6 +263,7 @@ Access plot-level structure by:
 ssPlot <- standStruct(at_FIA, byPlot= TRUE, grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT),
                        method = "annual")
 ```
+Note that the ECOSUBCD column comes from the original FIA data, not the at_ecoSub.shp
 
 ### **Ecoregion-level** 
 

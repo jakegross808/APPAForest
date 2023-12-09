@@ -1,0 +1,538 @@
+NPS_Information:
+  Metadata_Purpose: NPS
+  NPS_Unit_Information:
+    NPS_Unit_AlphaCode: APPA
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Publication_Date: 03/01/2012
+      Publication_Time: 14:45
+      Title: APPA_Ecoregions_USFS_HUC10_Shell_AEA
+      Series_Information:
+        Series_Name: GTR
+        Issue_Identification: WO-76
+      Publication_Information:
+        Publication_Place: Woodstock, VT
+        Publisher: National Park Service, Northeast Temperate Network (NETN)
+      Geospatial_Data_Presentation_Form: vector digital data
+      Larger_Work_Citation:
+        Citation_Information:
+          Title: Ecological Subregions: Sections and Subsections for the Conterminous United States
+          Publication_Information:
+            Publication_Place: Washington, DC
+            Publisher: USDA - Forest Service
+          Geospatial_Data_Presentation_Form: vector digital data
+          Publication_Date:
+          Originator: USDA - Forest Service ECOMAP Team
+          Series_Information:
+      Originator: USDA - Forest Service ECOMAP Team; National Park Service
+      Online_Linkage: http://www1.nature.nps.gov/im/units/appa/index.cfm
+  Description:
+    Abstract: This data set includes polygons for ecological sections and subsections within Subregions within the conterminous United States clipped to the HUC10 shell surrounding the Appalachian National Scenic Trail. This data set contains regional geographic delineations for analysis of ecological relationships across ecological units.
+    Purpose: Baseline map of the ecological boundaries. Ecological analysis of resource distribution patterns and associations among different ecological land units.
+    Language_of_Dataset: English (United States)
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Single_Date/Time:
+        Calendar_Date: 20120301
+    Currentness_Reference: Publication date
+  Status:
+    Progress: Planned
+    Maintenance_and_Update_Frequency: Irregular
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -90.613627
+      East_Bounding_Coordinate: -65.867101
+      North_Bounding_Coordinate: 49.636426
+      South_Bounding_Coordinate: 28.931957
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: ISO 19115 Topic Category
+      Theme_Keyword: boundaries
+    Theme:
+      Theme_Keyword_Thesaurus: National Park Service Theme Category Thesaurus
+    Place:
+      Place_Keyword: United States
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: Connecticut
+      Place_Keyword: Georgia
+      Place_Keyword: Maine
+      Place_Keyword: Maryland
+      Place_Keyword: Massachusetts
+      Place_Keyword: New Hampshire
+      Place_Keyword: New Jersey
+      Place_Keyword: New York
+      Place_Keyword: North Carolina
+      Place_Keyword: Pennsylvania
+      Place_Keyword: Tennessee
+      Place_Keyword: United States
+      Place_Keyword: Vermont
+      Place_Keyword: Virginia
+      Place_Keyword: West Virginia
+    Place:
+      Place_Keyword_Thesaurus: National Park System Unit Name Thesaurus
+    Place:
+      Place_Keyword_Thesaurus: National Park System Unit Code Thesaurus
+  Access_Constraints: None.
+  Use_Constraints: None. Please check sources, scale, accuracy, currentness and other available information. Please confirm that you are using the most recent copy of both data and metadata. Acknowledgement of the NPS would be appreciated.
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: National Park Service, Northeast Temperate Network
+        Contact_Person: Fred Dieffenbach
+      Contact_Position: Environmental Monitoring Coordinator
+      Contact_Instructions: http://www1.nature.nps.gov/im/units/appa/index.cfm
+      Hours_of_Service: 7:30-4:30 (ET)
+      Contact_Voice_Telephone: 802-457-3368
+      Contact_Facsimile_Telephone: 802-457-3405
+      Contact_Electronic_Mail_Address: fred_dieffenbach@nps.gov
+      Contact_Address:
+        Address_Type: mailing and physical address
+        State_or_Province: VT
+        City: Woodstock
+        Postal_Code: 05091
+        Address: Marsh-Billings-Rockefeller NHP
+        Address: 54 Elm Street
+  Native_Data_Set_Environment: Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.4000
+  Security_Information:
+    Security_Classification_System: FIPS Pub 199
+    Security_Classification: No Confidentiality
+    Security_Handling_Description: Standard Technical Controls
+Data_Quality_Information:
+  Lineage:
+    Source_Information:
+      Source_Contribution: 1. Geographic data reference maps and associated attributes 2. Interagency teams lead by Forest Service administrative regions
+    Process_Step:
+      Process_Description: Dataset copied.
+    Process_Step:
+      Process_Description: Dataset copied.
+    Process_Step:
+      Process_Date: 20101019
+      Process_Description: Dataset moved.
+    Process_Step:
+      Process_Date: 20110426
+      Process_Description: Dataset copied.
+    Process_Step:
+      Process_Date: 20110426
+      Process_Description: Dataset moved.
+    Process_Step:
+      Process_Date: 20110426
+      Process_Description: Dataset moved.
+    Process_Step:
+      Process_Date: 20110426
+      Process_Description: Dataset moved.
+    Process_Step:
+      Process_Date: 20110506
+      Process_Description: Dataset copied.
+    Process_Step:
+      Process_Date: 2011
+      Process_Description: Dataset clipped to 17 eastern states.
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report: Contact USDA - Forest Service
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report: Contact USDA - Forest Service
+    Vertical_Positional_Accuracy:
+      Vertical_Positional_Accuracy_Report: Contact USDA - Forest Service
+  Logical_Consistency_Report: Contact USDA - Forest Service
+  Completeness_Report: Contact USDA - Forest Service
+Spatial_Data_Organization_Information:
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Planar:
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: coordinate pair
+        Planar_Distance_Units: meters
+        Coordinate_Representation:
+          Abscissa_Resolution: 0.000000
+          Ordinate_Resolution: 0.000000
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum of 1983
+      Ellipsoid_Name: Geodetic Reference System 80
+      Semi-major_Axis: 6378137.000000
+      Denominator_of_Flattening_Ratio: 298.257222
+    Coordinate_System_Name:
+      Projected_Coordinate_System_Name: Albers Equal Area Conic
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: ANST_Ecoregions_USFS_HUC10_Shell_AEA
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+    Attribute:
+      Attribute_Label: PERIMETER
+    Attribute:
+      Attribute_Label: ECOMAP_200
+    Attribute:
+      Attribute_Label: ECOMAP_201
+    Attribute:
+      Attribute_Label: PROVINCE
+    Attribute:
+      Attribute_Label: SECTION
+    Attribute:
+      Attribute_Label: SUBSECTION
+    Attribute:
+      Attribute_Label: DOMAIN_NAM
+    Attribute:
+      Attribute_Label: DIVISION_N
+    Attribute:
+      Attribute_Label: PROVINCE_N
+    Attribute:
+      Attribute_Label: SECTION_NA
+    Attribute:
+      Attribute_Label: SUBSECTI_1
+    Attribute:
+      Attribute_Label: ATIntersec
+    Attribute:
+      Attribute_Label: Acres
+    Attribute:
+      Attribute_Label: Hectares
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: ecomap_2007.pat
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: ECOMAP_2007#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: ECOMAP_2007-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: PROVINCE
+    Attribute:
+      Attribute_Label: SECTION
+    Attribute:
+      Attribute_Label: SUBSECTION
+    Attribute:
+      Attribute_Label: DOMAIN_NAME
+    Attribute:
+      Attribute_Label: DIVISION_NAME
+    Attribute:
+      Attribute_Label: PROVINCE_NAME
+    Attribute:
+      Attribute_Label: SECTION_NAME
+    Attribute:
+      Attribute_Label: SUBSECTION_NAME
+    Attribute:
+      Attribute_Label: ACRES
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: ecomap_2007.patprovince
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PROVINCE#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PROVINCE-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: PROVINCE
+    Attribute:
+      Attribute_Label: PROVINCE_NAME
+    Attribute:
+      Attribute_Label: ACRES
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: ecomap_2007.patsection
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SECTION#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SECTION-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: SECTION
+    Attribute:
+      Attribute_Label: SECTION_NAME
+    Attribute:
+      Attribute_Label: ACRES
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: ecomap_2007.patsubsection
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SUBSECTION#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SUBSECTION-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: SUBSECTION
+    Attribute:
+      Attribute_Label: SUBSECTION_NAME
+    Attribute:
+      Attribute_Label: ACRES
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: eco_10_05_06.patsection
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SECTION#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SECTION-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: SECTION
+    Attribute:
+      Attribute_Label: SECTION_NAME
+    Attribute:
+      Attribute_Label: ACRES
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: eco_10_05_06.patsubsection
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: AREA
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: PERIMETER
+      Attribute_Definition: Perimeter of feature in internal units.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SUBSECTION#
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: ESRI
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: SUBSECTION-ID
+      Attribute_Definition: User-defined feature number.
+      Attribute_Definition_Source: ESRI
+    Attribute:
+      Attribute_Label: SUBSECTION
+    Attribute:
+      Attribute_Label: SUBSECTION_NAME
+    Attribute:
+      Attribute_Label: ACRES
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: National Park Service, Northeast Temperate Network
+        Contact_Person: Fred Dieffenbach
+      Contact_Position: Environmental Monitoring Coordinator
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: Marsh-Billings-Rockefeller NHP
+        Address: 54 Elm Street
+        City: Woodstock
+        State_or_Province: VT
+        Postal_Code: 05091
+      Contact_Voice_Telephone: 802-457-3368
+      Contact_Facsimile_Telephone: 802-457-3405
+      Contact_Electronic_Mail_Address: fred_dieffenbach@nps.gov
+      Contact_Instructions: http://www1.nature.nps.gov/im/units/appa/index.cfm
+  Distribution_Liability: Although these data have been processed successfully on a computer system at the National Park Service, no warranty expressed or implied is made regarding the accuracy or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty. It is also strongly recommended that careful attention be paid to the contents of the metadata file associated with these data to evaluate data set limitations, restrictions or intended use. The U.S. Environmental Protection Agency shall not be held liable for improper or incorrect use of the data described and/or contained herein.
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Transfer_Size: 3.824
+    Fees: None
+  Resource_Description: Downloadable Data
+Metadata_Reference_Information:
+  Metadata_Date: 20120301
+  Metadata_Review_Date: 20120301
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: National Park Service, Northeast Temperate Network
+        Contact_Person: Fred Dieffenbach
+      Contact_Position: Environmental Monitoring Coordinator
+      Contact_Instructions: http://www1.nature.nps.gov/im/units/appa/index.cfm
+      Contact_Voice_Telephone: 802-457-3368
+      Contact_Facsimile_Telephone: 802-457-3405
+      Contact_Electronic_Mail_Address: fred_dieffenbach@nps.gov
+      Contact_Address:
+        Address_Type: mailing and physical address
+        State_or_Province: VT
+        City: Woodstock
+        Postal_Code: 05091
+        Address: Marsh-Billings-Rockefeller NHP
+        Address: 54 Elm Street
+  Metadata_Standard_Name: FGDC Content Standards for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Extensions:
+    Online_Linkage: http://nrdata.nps.gov/profiles/NPS_Profile.xml
+    Profile_Name: NPS NR and GIS Metadata Profile
+  Metadata_Time_Convention: local time
+  Metadata_Future_Review_Date: 20160301
+  Metadata_Security_Information:
+    Metadata_Security_Classification_System: None
+    Metadata_Security_Classification: Unclassified
+    Metadata_Security_Handling_Description: None
+  Language_of_Metadata: English
+  Metadata_Access_Constraints:
+  Metadata_Use_Constraints:
+ESRI_Information:
+  Synchronization_Date: 20120301
+  Synchronization_Time: 15354100
+  Modification_Date: 20120301
+  Modification_Time: 15354100

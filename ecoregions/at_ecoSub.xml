@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<NPS_Info>
+<MetaPurp>NPS</MetaPurp>
+<NPS_Unit>
+<UnitCode>APPA</UnitCode>
+</NPS_Unit>
+</NPS_Info>
+<idinfo>
+<citation>
+<citeinfo>
+<pubdate>03/01/2012</pubdate>
+<pubtime>14:45</pubtime>
+<title>APPA_Ecoregions_USFS_HUC10_Shell_AEA</title>
+<serinfo>
+<sername>GTR</sername>
+<issue>WO-76</issue>
+</serinfo>
+<pubinfo>
+<pubplace>Woodstock, VT</pubplace>
+<publish>National Park Service, Northeast Temperate Network (NETN)</publish>
+</pubinfo>
+<geoform>vector digital data</geoform>
+<lworkcit>
+<citeinfo>
+<title>Ecological Subregions: Sections and Subsections for the Conterminous United States</title>
+<pubinfo>
+<pubplace>Washington, DC</pubplace>
+<publish>USDA - Forest Service</publish>
+</pubinfo>
+<geoform>vector digital data</geoform>
+<pubdate></pubdate>
+<origin>USDA - Forest Service ECOMAP Team</origin>
+<serinfo></serinfo>
+</citeinfo>
+</lworkcit>
+<origin>USDA - Forest Service ECOMAP Team; National Park Service</origin>
+<onlink>http://www1.nature.nps.gov/im/units/appa/index.cfm</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This data set includes polygons for ecological sections and subsections within Subregions within the conterminous United States clipped to the HUC10 shell surrounding the Appalachian National Scenic Trail. This data set contains regional geographic delineations for analysis of ecological relationships across ecological units.</abstract>
+<purpose>Baseline map of the ecological boundaries. Ecological analysis of resource distribution patterns and associations among different ecological land units.</purpose>
+<langdata>English (United States)</langdata>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20120301</caldate>
+</sngdate>
+</timeinfo>
+<current>Publication date</current>
+</timeperd>
+<status>
+<progress>Planned</progress>
+<update>Irregular</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-90.613627</westbc>
+<eastbc>-65.867101</eastbc>
+<northbc>49.636426</northbc>
+<southbc>28.931957</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Category</themekt>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>National Park Service Theme Category Thesaurus</themekt>
+</theme>
+<place>
+<placekey>United States</placekey>
+</place>
+<place>
+<placekt>None</placekt>
+<placekey>Connecticut</placekey>
+<placekey>Georgia</placekey>
+<placekey>Maine</placekey>
+<placekey>Maryland</placekey>
+<placekey>Massachusetts</placekey>
+<placekey>New Hampshire</placekey>
+<placekey>New Jersey</placekey>
+<placekey>New York</placekey>
+<placekey>North Carolina</placekey>
+<placekey>Pennsylvania</placekey>
+<placekey>Tennessee</placekey>
+<placekey>United States</placekey>
+<placekey>Vermont</placekey>
+<placekey>Virginia</placekey>
+<placekey>West Virginia</placekey>
+</place>
+<place>
+<placekt>National Park System Unit Name Thesaurus</placekt>
+</place>
+<place>
+<placekt>National Park System Unit Code Thesaurus</placekt>
+</place>
+</keywords>
+<accconst>None.</accconst>
+<useconst>None. Please check sources, scale, accuracy, currentness and other available information. Please confirm that you are using the most recent copy of both data and metadata. Acknowledgement of the NPS would be appreciated.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>National Park Service, Northeast Temperate Network</cntorg>
+<cntper>Fred Dieffenbach</cntper>
+</cntorgp>
+<cntpos>Environmental Monitoring Coordinator</cntpos>
+<cntinst>http://www1.nature.nps.gov/im/units/appa/index.cfm</cntinst>
+<hours>7:30-4:30 (ET)</hours>
+<cntvoice>802-457-3368</cntvoice>
+<cntfax>802-457-3405</cntfax>
+<cntemail>fred_dieffenbach@nps.gov</cntemail>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<state>VT</state>
+<city>Woodstock</city>
+<postal>05091</postal>
+<address>Marsh-Billings-Rockefeller NHP</address>
+<address>54 Elm Street</address>
+</cntaddr>
+</cntinfo>
+</ptcontac>
+<native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.4000</native>
+<secinfo>
+<secsys>FIPS Pub 199</secsys>
+<secclass>No Confidentiality</secclass>
+<sechandl>Standard Technical Controls</sechandl>
+</secinfo>
+</idinfo>
+<dataqual>
+<lineage>
+<srcinfo>
+<srccontr>1. Geographic data reference maps and associated attributes 2. Interagency teams lead by Forest Service administrative regions</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>Dataset copied.</procdesc>
+</procstep>
+<procstep>
+<procdesc>Dataset copied.</procdesc>
+</procstep>
+<procstep>
+<procdate>20101019</procdate>
+<procdesc>Dataset moved.</procdesc>
+</procstep>
+<procstep>
+<procdate>20110426</procdate>
+<procdesc>Dataset copied.</procdesc>
+</procstep>
+<procstep>
+<procdate>20110426</procdate>
+<procdesc>Dataset moved.</procdesc>
+</procstep>
+<procstep>
+<procdate>20110426</procdate>
+<procdesc>Dataset moved.</procdesc>
+</procstep>
+<procstep>
+<procdate>20110426</procdate>
+<procdesc>Dataset moved.</procdesc>
+</procstep>
+<procstep>
+<procdate>20110506</procdate>
+<procdesc>Dataset copied.</procdesc>
+</procstep>
+<procstep>
+<procdate>2011</procdate>
+<procdesc>Dataset clipped to 17 eastern states.</procdesc>
+</procstep>
+</lineage>
+<attracc>
+<attraccr>Contact USDA - Forest Service</attraccr>
+</attracc>
+<posacc>
+<horizpa>
+<horizpar>Contact USDA - Forest Service</horizpar>
+</horizpa>
+<vertacc>
+<vertaccr>Contact USDA - Forest Service</vertaccr>
+</vertacc>
+</posacc>
+<logic>Contact USDA - Forest Service</logic>
+<complete>Contact USDA - Forest Service</complete>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf></ptvctinf>
+</spdoinfo>
+<spref>
+<horizsys>
+<planar>
+<planci>
+<plance>coordinate pair</plance>
+<plandu>meters</plandu>
+<coordrep>
+<absres>0.000000</absres>
+<ordres>0.000000</ordres>
+</coordrep>
+</planci>
+</planar>
+<geodetic>
+<horizdn>North American Datum of 1983</horizdn>
+<ellips>Geodetic Reference System 80</ellips>
+<semiaxis>6378137.000000</semiaxis>
+<denflat>298.257222</denflat>
+</geodetic>
+<cordsysn>
+<projcsn>Albers Equal Area Conic</projcsn>
+</cordsysn>
+</horizsys>
+</spref>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>ANST_Ecoregions_USFS_HUC10_Shell_AEA</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+</attr>
+<attr>
+<attrlabl>ECOMAP_200</attrlabl>
+</attr>
+<attr>
+<attrlabl>ECOMAP_201</attrlabl>
+</attr>
+<attr>
+<attrlabl>PROVINCE</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>DOMAIN_NAM</attrlabl>
+</attr>
+<attr>
+<attrlabl>DIVISION_N</attrlabl>
+</attr>
+<attr>
+<attrlabl>PROVINCE_N</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION_NA</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTI_1</attrlabl>
+</attr>
+<attr>
+<attrlabl>ATIntersec</attrlabl>
+</attr>
+<attr>
+<attrlabl>Acres</attrlabl>
+</attr>
+<attr>
+<attrlabl>Hectares</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>ecomap_2007.pat</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ECOMAP_2007#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ECOMAP_2007-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>PROVINCE</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>DOMAIN_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>DIVISION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>PROVINCE_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>ecomap_2007.patprovince</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROVINCE#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROVINCE-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>PROVINCE</attrlabl>
+</attr>
+<attr>
+<attrlabl>PROVINCE_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>ecomap_2007.patsection</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTION#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTION-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>SECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>ecomap_2007.patsubsection</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SUBSECTION#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SUBSECTION-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>SUBSECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>eco_10_05_06.patsection</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTION#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTION-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>SECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+<detailed>
+<enttyp>
+<enttypl>eco_10_05_06.patsubsection</enttypl>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERIMETER</attrlabl>
+<attrdef>Perimeter of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SUBSECTION#</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SUBSECTION-ID</attrlabl>
+<attrdef>User-defined feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+</attr>
+<attr>
+<attrlabl>SUBSECTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>SUBSECTION_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>National Park Service, Northeast Temperate Network</cntorg>
+<cntper>Fred Dieffenbach</cntper>
+</cntorgp>
+<cntpos>Environmental Monitoring Coordinator</cntpos>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<address>Marsh-Billings-Rockefeller NHP</address>
+<address>54 Elm Street</address>
+<city>Woodstock</city>
+<state>VT</state>
+<postal>05091</postal>
+</cntaddr>
+<cntvoice>802-457-3368</cntvoice>
+<cntfax>802-457-3405</cntfax>
+<cntemail>fred_dieffenbach@nps.gov</cntemail>
+<cntinst>http://www1.nature.nps.gov/im/units/appa/index.cfm</cntinst>
+</cntinfo>
+</distrib>
+<distliab>Although these data have been processed successfully on a computer system at the National Park Service, no warranty expressed or implied is made regarding the accuracy or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty. It is also strongly recommended that careful attention be paid to the contents of the metadata file associated with these data to evaluate data set limitations, restrictions or intended use. The U.S. Environmental Protection Agency shall not be held liable for improper or incorrect use of the data described and/or contained herein.</distliab>
+<stdorder>
+<digform>
+<digtinfo>
+<transize>3.824</transize>
+</digtinfo>
+</digform>
+<fees>None</fees>
+</stdorder>
+<resdesc>Downloadable Data</resdesc>
+</distinfo>
+<metainfo>
+<metd>20120301</metd>
+<metrd>20120301</metrd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>National Park Service, Northeast Temperate Network</cntorg>
+<cntper>Fred Dieffenbach</cntper>
+</cntorgp>
+<cntpos>Environmental Monitoring Coordinator</cntpos>
+<cntinst>http://www1.nature.nps.gov/im/units/appa/index.cfm</cntinst>
+<cntvoice>802-457-3368</cntvoice>
+<cntfax>802-457-3405</cntfax>
+<cntemail>fred_dieffenbach@nps.gov</cntemail>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<state>VT</state>
+<city>Woodstock</city>
+<postal>05091</postal>
+<address>Marsh-Billings-Rockefeller NHP</address>
+<address>54 Elm Street</address>
+</cntaddr>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<metextns>
+<onlink>http://nrdata.nps.gov/profiles/NPS_Profile.xml</onlink>
+<metprof>NPS NR and GIS Metadata Profile</metprof>
+</metextns>
+<mettc>local time</mettc>
+<metfrd>20160301</metfrd>
+<metsi>
+<metscs>None</metscs>
+<metsc>Unclassified</metsc>
+<metshd>None</metshd>
+</metsi>
+<langmeta>English</langmeta>
+<metac></metac>
+<metuc></metuc>
+</metainfo>
+<Esri>
+<SyncDate>20120301</SyncDate>
+<SyncTime>15354100</SyncTime>
+<ModDate>20120301</ModDate>
+<ModTime>15354100</ModTime>
+</Esri>
+</metadata>
