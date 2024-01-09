@@ -231,7 +231,7 @@ The following section illustrates how to:
       * **Stand structural stage distributions**
           + % area in pole, mature, and late stage forest
   
-Each of the following subsections illustrates how to use the variety of functions in `rFIA` to calculate these metrics and provides a decription of their tabular outputs.
+Each of the following subsections illustrates how to use the variety of functions in `rFIA` to calculate these metrics and provides a description of their tabular outputs.
 
 
 **Population estimation procedures:**
@@ -260,10 +260,19 @@ The following example code produces estimates for all FIA reporting years within
 Access plot-level structure by:
 
 ``` {r raw_ss,include = TRUE, echo=TRUE, warning=FALSE, comment= NA, eval= FALSE}
-ssPlot <- standStruct(at_FIA, byPlot= TRUE, grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT),
-                       method = "annual")
+ssPlot <- standStruct(at_FIA, byPlot= TRUE, 
+                      grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT), 
+                      method = "annual")
+
+ssPlot_nogrpByPLOT <- standStruct(at_FIA, byPlot= TRUE, 
+                      grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS), 
+                      method = "annual")
+
+ssPlot2 <- standStruct(at_FIA, byPlot= TRUE, 
+                      #grpBy = c(STATECD, ECOSUBCD, OWNGRPCD, QA_STATUS,PLOT), 
+                      method = "annual")
 ```
-Note that the ECOSUBCD column comes from the original FIA data, not the at_ecoSub.shp
+Note that the `ECOSUBCD` column comes from the original FIA data, not the at_ecoSub.shp
 
 ### **Ecoregion-level** 
 
@@ -276,12 +285,19 @@ ss <- standStruct(at_FIA, polys = eco, nCores = cores, method = 'annual')
 ### **Data Definitions**
 
 * **Description:** Estimates of forest structural stage distributions as percent forested land area in pole, mature, late, and mosaic stages
+  + <ins>Diameter Classes:</ins>
+    + *Pole*: 11 - 25.9 cm
+    + *Mature*: 26 - 45.9 cm
+    + *Large*: 46+ cm
+  + <ins>Structural Stage Classification:</ins>
+    + *Pole Stage*: > 67% BA in pole and mature classes, with more BA in pole than mature.
+    + *Mature Stage*: > 67% BA in pole and mature classes, with more BA in mature than pole OR > 67% BA in mature and large classes, with more BA in mature.
+    + *Late-Successional Stage:*: > 67% BA in mature and large classes, with more in large.
+    + *Mosiac:*: Any plot not meeting above criteria.
+
 * **Data fields:** 
-    + *YEAR*: FIA reporting year for current abundance estimates
-    + *POLE_PERC*: estimate of proportion forested area in pole stage forest
-    + *MATURE_PERC*: estimate of proportion forested area in mature stage forest
-    + *LATE_PERC*: estimate of proportion forested area in late-seral stage forest
-    + *MOSAIC_PERC*: estimate of proportion forested area in mosaic stage (unclassified) forest
+    + *YEAR*: FIA reporting year for current abundance estimates. When `byPlot = FALSE` (i.e., population estimates are returned), the `YEAR` column in the resulting dataframe indicates the final year of the inventory cycle that estimates are produced for. For example, an estimate of current forest area (e.g., 2018) may draw on data collected from 2008-2018, and `YEAR` will be listed as 2018 (consistent with EVALIDator). However, when `byPlot = TRUE` (i.e., plot-level estimates returned), the `YEAR` column denotes the year that each plot was measured (`MEASYEAR`), which may differ slightly from its associated inventory year (`INVYR`).
+    + *COVER_PCT*: The estimated percentage of the given `STAGE` class for the area of consideration. Percentage is based on the total forest/timberland in the area of consideration. `STAGE` categories include: POLE, MATURE, LATE, MOSAIC.
     + *nPlots*: number of non-zero plots used to compute current area estimates
     + columns ending in *SE*: estimates of sampling error (%) of the respective variable. All sampling error estimates are computed with 68% confidence
     + other columns from `at_ecoSub.shp`
