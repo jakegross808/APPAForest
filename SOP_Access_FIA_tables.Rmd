@@ -19,6 +19,16 @@ output:
 version: Built with R `r getRversion()`
 ---
 
+```{r knit_vs_run, include = TRUE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+#at<-rFIA::readFIA("C:/Users/hstan/Dropbox/FIA/VT")
+#at_FIAMR <- rFIA::clipFIA(at, mask = NULL, matchEval= FALSE, mostRecent = TRUE, nCores = cores)
+
+```
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -147,7 +157,11 @@ levels(as.factor(eco$SUBSECTION))
 
 # Distinct SUBSECTI_1:
 n_distinct(eco$SUBSECTI_1)
-levels(as.factor(eco$SUBSECTI_1))
+levels(as.factor(eco$SUBSECTI_1)) # Subsection names not unique - there are two different "Northern Piedmont"!!
+
+eco %>%
+  filter(SUBSECTI_1 == "Northern Piedmont") %>%
+  sf::st_drop_geometry()
 
 # Distinct SECTION_NA:
 n_distinct(eco$SECTION_NA)
